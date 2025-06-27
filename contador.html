@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Tiempo Juntos 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffa8a8, #ffb6b6);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 24px;
+            animation: floatUp 10s linear infinite;
+        }
+
+        .floating-heart:nth-child(odd) {
+            animation-duration: 12s;
+        }
+
+        .floating-heart:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .floating-heart:nth-child(2) { left: 15%; animation-delay: 2s; }
+        .floating-heart:nth-child(3) { left: 25%; animation-delay: 4s; }
+        .floating-heart:nth-child(4) { left: 35%; animation-delay: 1s; }
+        .floating-heart:nth-child(5) { left: 45%; animation-delay: 6s; }
+        .floating-heart:nth-child(6) { left: 55%; animation-delay: 3s; }
+        .floating-heart:nth-child(7) { left: 65%; animation-delay: 8s; }
+        .floating-heart:nth-child(8) { left: 75%; animation-delay: 5s; }
+        .floating-heart:nth-child(9) { left: 85%; animation-delay: 7s; }
+        .floating-heart:nth-child(10) { left: 95%; animation-delay: 9s; }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            z-index: 2;
+            position: relative;
+            animation: slideInUp 1.5s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .welcome-title {
+            color: #d63384;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .romantic-message {
+            color: #495057;
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            font-style: italic;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-label {
+            color: #6c757d;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .counter-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .counter-item {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 25px 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+            transition: transform 0.3s ease;
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        .counter-item:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        @keyframes pulse {
+            from { box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3); }
+            to { box-shadow: 0 12px 30px rgba(255, 107, 107, 0.5); }
+        }
+
+        .counter-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .counter-label {
+            font-size: 1em;
+            font-weight: normal;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .love-quote {
+            color: #6c757d;
+            font-size: 1.2em;
+            font-style: italic;
+            margin-top: 30px;
+            padding: 20px;
+            border-left: 4px solid #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 0 10px 10px 0;
+        }
+
+        .sparkles {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 1.5em;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+            50% { opacity: 0.5; transform: scale(1.2) rotate(180deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 30px 25px;
+                width: 95%;
+            }
+            
+            .welcome-title {
+                font-size: 2.5em;
+            }
+            
+            .romantic-message {
+                font-size: 1.2em;
+            }
+            
+            .time-label {
+                font-size: 1.5em;
+            }
+            
+            .counter-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .counter-item {
+                padding: 20px 10px;
+            }
+            
+            .counter-number {
+                font-size: 2em;
+            }
+            
+            .counter-label {
+                font-size: 0.9em;
+            }
+            
+            .love-quote {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-title {
+                font-size: 2em;
+            }
+            
+            .romantic-message {
+                font-size: 1.1em;
+            }
+            
+            .counter-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .counter-number {
+                font-size: 1.8em;
+            }
+            
+            .love-quote {
+                font-size: 1em;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts">
+        <div class="floating-heart">💕</div>
+        <div class="floating-heart">💖</div>
+        <div class="floating-heart">💗</div>
+        <div class="floating-heart">💝</div>
+        <div class="floating-heart">💞</div>
+        <div class="floating-heart">💕</div>
+        <div class="floating-heart">💖</div>
+        <div class="floating-heart">💗</div>
+        <div class="floating-heart">💝</div>
+        <div class="floating-heart">💞</div>
+    </div>
+
+    <div class="main-container">
+        <div class="sparkles">✨</div>
+        <h1 class="welcome-title">💕 ¡Hola mi amor! 💕</h1>
+        
+        <p class="romantic-message">
+            "El tiempo no se mide en días, sino en momentos que nos roban el aliento...<br>
+            Y desde aquel 12 de octubre, cada segundo a tu lado ha sido mágico"
+        </p>
+        
+        <h2 class="time-label">⏰ Llevamos juntos exactamente:</h2>
+        
+        <div class="counter-container">
+            <div class="counter-item">
+                <span class="counter-number" id="years">0</span>
+                <span class="counter-label">Años</span>
+            </div>
+            <div class="counter-item">
+                <span class="counter-number" id="months">0</span>
+                <span class="counter-label">Meses</span>
+            </div>
+            <div class="counter-item">
+                <span class="counter-number" id="days">0</span>
+                <span class="counter-label">Días</span>
+            </div>
+            <div class="counter-item">
+                <span class="counter-number" id="hours">0</span>
+                <span class="counter-label">Horas</span>
+            </div>
+            <div class="counter-item">
+                <span class="counter-number" id="minutes">0</span>
+                <span class="counter-label">Minutos</span>
+            </div>
+            <div class="counter-item">
+                <span class="counter-number" id="seconds">0</span>
+                <span class="counter-label">Segundos</span>
+            </div>
+        </div>
+        
+        <div class="love-quote">
+            💫 "Y seguiremos contando cada segundo, porque contigo, 
+            el tiempo se convierte en eternidad" 💫
+        </div>
+    </div>
+
+    <script>
+        // Fecha de inicio: 12 de octubre de 2024 a las 21:00
+        const startDate = new Date('2024-10-12T21:00:00');
+        
+        function updateCounter() {
+            const now = new Date();
+            const difference = now - startDate;
+            
+            // Calcular años, meses, días, horas, minutos y segundos
+            const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((difference % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((difference % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            // Actualizar los elementos HTML
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        
+        // Actualizar el contador cada segundo
+        updateCounter();
+        setInterval(updateCounter, 1000);
+        
+        // Efecto de animación adicional para los números
+        function animateNumber(element) {
+            element.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+            }, 200);
+        }
+        
+        // Animar los números cuando cambien
+        let previousValues = {};
+        
+        setInterval(() => {
+            const elements = ['years', 'months', 'days', 'hours', 'minutes', 'seconds'];
+            elements.forEach(id => {
+                const element = document.getElementById(id);
+                const currentValue = element.textContent;
+                
+                if (previousValues[id] !== currentValue) {
+                    animateNumber(element);
+                    previousValues[id] = currentValue;
+                }
+            });
+        }, 1000);
+        
+        // Efecto de partículas de corazones al hacer click
+        document.addEventListener('click', function(e) {
+            createHeartParticle(e.clientX, e.clientY);
+        });
+        
+        function createHeartParticle(x, y) {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💕';
+            heart.style.position = 'fixed';
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            heart.style.fontSize = '20px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '1000';
+            heart.style.animation = 'heartPop 1s ease-out forwards';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 1000);
+        }
+        
+        // CSS para la animación de corazones al hacer click
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes heartPop {
+                0% {
+                    transform: scale(0) translateY(0);
+                    opacity: 1;
+                }
+                50% {
+                    transform: scale(1.2) translateY(-20px);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(0) translateY(-50px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
